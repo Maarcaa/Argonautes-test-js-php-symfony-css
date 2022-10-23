@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block body %}
+
+
+	<!-- Header section -->
+	<header class="text-center p-1 bg-dark ">
+		<h1 class="text-white">
+			<img src="https://www.wildcodeschool.com/assets/logo_main-e4f3f744c8e717f1b7df3858dce55a86c63d4766d5d9a7f454250145f097c2fe.png" alt="Wild Code School logo" width='150'/>
+			Les Argonautes
+		</h1>
+	</header>
+	<div class="row">
+		<div class="col-8 mx-auto">
+			{% include 'include/_flashes.html.twig' %}
+		</div>
+	</div>
+
+	<!-- Main section -->
+	<main
+		class="text-center p-4">
+
+		<!-- New member form -->
+		<h2 class="p-2 mouseOver ">Ajouter un(e) Argonaute</h2>
+
+		<div class="column">
+			<div class="col-6 mx-auto">
+				{{ form_start(form) }}
+				<div class="row">
+					<div class="col-6">{{ form_row(form.name) }}</div>
+					<div class="col-6">{{ form_row(form.firstname) }}</div>
+				</div>
+				{{ form_end(form) }}
+			</div>
+
+
+			<!-- Member list -->
+
+	
+					<p style="font-size : 500"><span class="typed-text"></span><span class="cursor blink back">&nbsp;</span></p>
+
+			<table class="table my-3">
+				<thead class="table-dark">
+					<tr>
+						<th>#</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Créé le</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					{% for personnage in personnages %}
+
+						<tr class="hoverGrey">
+							<td>{{ personnage.id }}</td>
+							<td>{{ personnage.name }}</td>
+							<td>{{ personnage.firstname }}</td>
+							<td>{{ personnage.createdAt | date('d/m/Y') }}</td>
+						</tr>
+
+					{% else %}
+
+						<tr>
+							<td colspan="11" class="bg-warning text-center">Aucun personnage d'enregistrer</td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+
+
+		{% endblock %}
